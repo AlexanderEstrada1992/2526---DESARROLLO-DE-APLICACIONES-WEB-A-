@@ -1,0 +1,56 @@
+/* Sobrescribir estilos de Bootstrap */
+.btn-primary {
+    background-color: #ff5733;
+    border-color: #ff5733;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e04e2a;
+    transform: scale(1.05);
+}
+
+/* Cards */
+.card {
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Header */
+header h1 {
+    font-weight: bold;
+    animation: fadeInDown 1s ease;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer a {
+    text-decoration: none;
+    color: #ff5733;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #e04e2a;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 767px) {
+    header {
+        text-align: center;
+        padding: 20px;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+}
