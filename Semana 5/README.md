@@ -33,5 +33,5 @@ semana 5/
 ## Publicación
 El proyecto se encuentra publicado en GitHub Pages.
 
-🔗 Sitio web: *(agregar aquí el enlace de GitHub Pages)*  
-🔗 Repositorio: *(agregar aquí el enlace del repositorio GitHub)*  
+🔗 Sitio web: *(https://alexanderestrada1992.github.io/2526---DESARROLLO-DE-APLICACIONES-WEB-A-/Semana%205/index.html)*  
+🔗 Repositorio: *(https://github.com/AlexanderEstrada1992/2526---DESARROLLO-DE-APLICACIONES-WEB-A-/tree/main/Semana%205)*  
