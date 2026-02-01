@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Web Interactiva</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== ENCABEZADO ===== -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">MI FERRETERÍA</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- ===== CONTENIDO PRINCIPAL ===== -->
+<main class="container my-4" id="inicio">
+
+    <!-- ===== CARRUSEL ===== -->
+    <div id="carouselExample" class="carousel slide mb-5">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="img/img1.jpg" class="d-block w-100"> Calidad
+            </div>
+            <div class="carousel-item">
+                <img src="img/img2.jpg" class="d-block w-100"> Cantidad
+            </div>
+            <div class="carousel-item">
+                <img src="img/img3.jpg" class="d-block w-100"> Garantía
+            </div>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- ===== TABLA DE PRODUCTOS ===== -->
+    <section id="productos">
+        <h2 class="mb-3">Productos</h2>
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Martillo</td>
+                    <td>$10</td>
+                    <td>Disponible</td>
+                </tr>
+                <tr>
+                    <td>Taladro</td>
+                    <td>$20</td>
+                    <td>Disponible</td>
+                </tr>
+                <tr>
+                    <td>Playo alicate</td>
+                    <td>$15</td>
+                    <td>Agotado</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ===== BOTÓN DE ALERTA ===== -->
+    <div class="my-4">
+        <button class="btn btn-warning" onclick="mostrarAlerta()">
+            Mostrar Alerta
+        </button>
+    </div>
+
+    <!-- ===== FORMULARIO DE CONTACTO ===== -->
+    <section id="contacto">
+        <h2 class="mb-3">Contacto</h2>
+
+        <form id="formularioContacto">
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre">
+                <small class="text-danger" id="errorNombre"></small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="correo">
+                <small class="text-danger" id="errorCorreo"></small>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mensaje</label>
+                <textarea class="form-control" id="mensaje" rows="3"></textarea>
+                <small class="text-danger" id="errorMensaje"></small>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </section>
+
+</main>
+
+<!-- ===== PIE DE PÁGINA ===== -->
+<footer class="bg-dark text-white text-center p-3">
+    <p>Contacto: alexanderestrada3377@gmail.com</p>
+    <p>Síguenos en redes sociales</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- JavaScript propio -->
+<script src="script.js"></script>
+
+</body>
+</html>
