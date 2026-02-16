@@ -32,6 +32,10 @@ def reporte(id_reporte):
 def mantenimiento(id_equipo):
     return f"Mantenimiento registrado para el equipo N° {id_equipo} – estado actualizado en la UNMO."
 
+import os
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=10000)
+    port = int(os.environ.get("PORT", 5000))  # Toma el puerto de Render
+    app.run(debug=True, host='0.0.0.0', port=port)
+
 
