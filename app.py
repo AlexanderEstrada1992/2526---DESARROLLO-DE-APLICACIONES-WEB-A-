@@ -33,5 +33,5 @@ def mantenimiento(id_equipo):
     return f"Mantenimiento registrado para el equipo N° {id_equipo} – estado actualizado en la UNMO."
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=10000)
 
