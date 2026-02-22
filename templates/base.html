@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Sistema de Gestión Operativa UNMO</title>
+
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
 
     <header>
         <h1>Sistema de Gestión Operativa - UNMO</h1>
         <nav>
-            <a href="/">Inicio</a> |
+            <a href="/">Inicio</a>
             <a href="/about">Acerca de</a>
         </nav>
-        <hr>
     </header>
 
     <main>
@@ -20,7 +22,6 @@
         {% endblock %}
     </main>
 
-    <hr>
     <footer>
         <p>Unidad Nacional de Mantenimiento del Orden - Policía Nacional del Ecuador</p>
     </footer>
