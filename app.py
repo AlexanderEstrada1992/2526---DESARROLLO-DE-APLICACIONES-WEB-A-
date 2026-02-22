@@ -1,12 +1,16 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 # Ruta principal
 @app.route('/')
 def inicio():
-    return "Bienvenido al Sistema de Gestión Operativa de la UNMO"
+    return render_template('index.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+    
 # Ruta dinámica para Servidor Policial
 @app.route('/servidor/<nombre>')
 def servidor(nombre):
