@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Lista de Equipos Tácticos</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th>Disponibilidad</th>
+        <th>Acción</th>
+    </tr>
+
+    {% for equipo in equipos %}
+    <tr>
+        <td>{{ equipo[0] }}</td>
+        <td>{{ equipo[1] }}</td>
+        <td>{{ equipo[2] }}</td>
+        <td>{{ equipo[3] }}</td>
+        <td>
+            <a href="/editar_equipo/{{ equipo[0] }}">Editar</a> |
+            <a href="/eliminar_equipo/{{ equipo[0] }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}

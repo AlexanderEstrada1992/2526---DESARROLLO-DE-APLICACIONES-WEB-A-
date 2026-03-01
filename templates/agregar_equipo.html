@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Agregar Equipo Táctico</h2>
+
+<form method="POST">
+    <label>ID:</label><br>
+    <input type="number" name="id" required><br><br>
+
+    <label>Nombre:</label><br>
+    <input type="text" name="nombre" required><br><br>
+
+    <label>Estado:</label><br>
+    <input type="text" name="estado" required><br><br>
+
+    <label>Disponibilidad:</label><br>
+    <input type="text" name="disponibilidad" required><br><br>
+
+    <button type="submit">Guardar Equipo</button>
+</form>
+
+{% endblock %}
