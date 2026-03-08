@@ -6,11 +6,20 @@ from database import (
     eliminar_equipo,
     actualizar_equipo
 )
+
+from inventario.inventario import (
+    guardar_txt,
+    guardar_json,
+    guardar_csv,
+    leer_json,
+    leer_csv
+)
+
 import os
 
 app = Flask(__name__)
 
-# Crear tabla al iniciar la aplicación
+# Crear tabla al iniciar
 crear_tabla()
 
 # =========================
@@ -28,7 +37,7 @@ def about():
 
 
 # =========================
-# RUTAS DINÁMICAS ANTERIORES
+# RUTAS DINÁMICAS
 # =========================
 
 @app.route('/servidor/<nombre>')
@@ -57,31 +66,59 @@ def mantenimiento(id_equipo):
 
 
 # =========================
-# CRUD - AGREGAR EQUIPO
+# AGREGAR EQUIPO
 # =========================
 
 @app.route("/agregar_equipo", methods=["GET", "POST"])
 def agregar_equipo():
+
     if request.method == "POST":
+
         id_equipo = request.form["id"]
         nombre = request.form["nombre"]
         estado = request.form["estado"]
         disponibilidad = request.form["disponibilidad"]
 
+        # Guardar en SQLite
         insertar_equipo(id_equipo, nombre, estado, disponibilidad)
 
-        return redirect("/")
+        # Guardar en archivos
+        guardar_txt(id_equipo, nombre, estado, disponibilidad)
+        guardar_json(id_equipo, nombre, estado, disponibilidad)
+        guardar_csv(id_equipo, nombre, estado, disponibilidad)
+
+        return redirect("/ver_equipos")
 
     return render_template("agregar_equipo.html")
+
+
+# =========================
+# VER EQUIPOS (SQLite)
+# =========================
+
 @app.route("/ver_equipos")
 def ver_equipos():
+
     equipos = obtener_equipos()
+
     return render_template("ver_equipos.html", equipos=equipos)
+
+
+# =========================
+# ELIMINAR EQUIPO
+# =========================
 
 @app.route("/eliminar_equipo/<int:id_equipo>")
 def eliminar_equipo_route(id_equipo):
+
     eliminar_equipo(id_equipo)
+
     return redirect("/ver_equipos")
+
+
+# =========================
+# EDITAR EQUIPO
+# =========================
 
 @app.route("/editar_equipo/<int:id_equipo>", methods=["GET", "POST"])
 def editar_equipo(id_equipo):
@@ -95,6 +132,7 @@ def editar_equipo(id_equipo):
             break
 
     if request.method == "POST":
+
         nombre = request.form["nombre"]
         estado = request.form["estado"]
         disponibilidad = request.form["disponibilidad"]
@@ -105,10 +143,37 @@ def editar_equipo(id_equipo):
 
     return render_template("editar_equipo.html", equipo=equipo_actual)
 
+
+# =========================
+# VER DATOS JSON
+# =========================
+
+@app.route("/ver_json")
+def ver_json():
+
+    datos = leer_json()
+
+    return render_template("ver_json.html", datos=datos)
+
+
+# =========================
+# VER DATOS CSV
+# =========================
+
+@app.route("/ver_csv")
+def ver_csv():
+
+    datos = leer_csv()
+
+    return render_template("ver_csv.html", datos=datos)
+
+
 # =========================
 # EJECUCIÓN
 # =========================
 
 if __name__ == '__main__':
+
     port = int(os.environ.get("PORT", 5000))
+
     app.run(debug=True, host='0.0.0.0', port=port)

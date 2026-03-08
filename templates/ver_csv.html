@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Datos guardados en CSV</h2>
+
+<table border="1">
+
+{% for fila in datos %}
+
+<tr>
+<td>{{ fila[0] }}</td>
+<td>{{ fila[1] }}</td>
+<td>{{ fila[2] }}</td>
+<td>{{ fila[3] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

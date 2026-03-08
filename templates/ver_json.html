@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Datos guardados en JSON</h2>
+
+<table border="1">
+
+<tr>
+<th>ID</th>
+<th>Nombre</th>
+<th>Estado</th>
+<th>Disponibilidad</th>
+</tr>
+
+{% for d in datos %}
+
+<tr>
+<td>{{ d.id }}</td>
+<td>{{ d.nombre }}</td>
+<td>{{ d.estado }}</td>
+<td>{{ d.disponibilidad }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}
