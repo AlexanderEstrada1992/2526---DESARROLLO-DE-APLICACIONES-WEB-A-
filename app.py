@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from conexion.conexion import obtener_conexion
 from database import (
     crear_tabla,
     insertar_equipo,
@@ -18,6 +19,7 @@ from inventario.inventario import (
 import os
 
 app = Flask(__name__)
+conexion = obtener_conexion()
 
 # Crear tabla al iniciar
 crear_tabla()
@@ -64,6 +66,94 @@ def reporte(id_reporte):
 def mantenimiento(id_equipo):
     return f"Mantenimiento registrado para el equipo N° {id_equipo} – estado actualizado en la UNMO."
 
+@app.route("/usuarios")
+def ver_usuarios():
+    conexion = obtener_conexion()
+    cursor = conexion.cursor()
+
+    cursor.execute("SELECT * FROM usuarios")
+    usuarios = cursor.fetchall()
+
+    cursor.close()
+    conexion.close()
+
+    return render_template("usuarios.html", usuarios=usuarios)
+
+@app.route("/agregar_usuario")
+def agregar_usuario():
+    return render_template("agregar_usuario.html")
+
+@app.route("/guardar_usuario", methods=["POST"])
+def guardar_usuario():
+
+    nombre = request.form["nombre"]
+    email = request.form["email"]
+    password = request.form["password"]
+
+    conexion = obtener_conexion()
+    cursor = conexion.cursor()
+
+    sql = "INSERT INTO usuarios (nombre, mail, password) VALUES (%s,%s,%s)"
+    cursor.execute(sql, (nombre, email, password))
+
+    conexion.commit()
+
+    cursor.close()
+    conexion.close()
+
+    return redirect("/usuarios")
+
+@app.route("/eliminar_usuario/<int:id>")
+def eliminar_usuario(id):
+
+    conexion = obtener_conexion()
+    cursor = conexion.cursor()
+
+    sql = "DELETE FROM usuarios WHERE id_usuario=%s"
+    cursor.execute(sql, (id,))
+
+    conexion.commit()
+
+    cursor.close()
+    conexion.close()
+
+    return redirect("/usuarios")
+
+@app.route("/editar_usuario/<int:id>")
+def editar_usuario(id):
+
+    conexion = obtener_conexion()
+    cursor = conexion.cursor()
+
+    sql = "SELECT * FROM usuarios WHERE id_usuario=%s"
+    cursor.execute(sql, (id,))
+    usuario = cursor.fetchone()
+
+    cursor.close()
+    conexion.close()
+
+    return render_template("editar_usuario.html", usuario=usuario)
+
+@app.route("/actualizar_usuario", methods=["POST"])
+def actualizar_usuario():
+
+    id = request.form["id"]
+    nombre = request.form["nombre"]
+    email = request.form["email"]
+    password = request.form["password"]
+
+    conexion = obtener_conexion()
+    cursor = conexion.cursor()
+
+    sql = "UPDATE usuarios SET nombre=%s, mail=%s, password=%s WHERE id_usuario=%s"
+    cursor.execute(sql, (nombre, email, password, id))
+
+    conexion.commit()
+
+    cursor.close()
+    conexion.close()
+
+    return redirect("/usuarios")
 
 # =========================
 # AGREGAR EQUIPO

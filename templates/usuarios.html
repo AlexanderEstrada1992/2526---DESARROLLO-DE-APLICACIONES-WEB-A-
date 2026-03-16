@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usuarios</title>
+</head>
+<body>
+
+<h2>Lista de Usuarios</h2>
+
+<a href="/agregar_usuario">Agregar Usuario</a>
+<br><br>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Password</th>
+    </tr>
+
+    {% for usuario in usuarios %}
+    <tr>
+        <td>{{ usuario[0] }}</td>
+        <td>{{ usuario[1] }}</td>
+        <td>{{ usuario[2] }}</td>
+        <td>{{ usuario[3] }}</td>
+        <td>
+        <a href="/editar_usuario/{{ usuario[0] }}">Editar</a>
+        <a href="/eliminar_usuario/{{ usuario[0] }}">Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
